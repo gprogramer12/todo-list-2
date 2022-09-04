@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodoModule } from './todo/todo.module';
-import { ToDoModule } from './to-do/to-do.module';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 
 
 @NgModule({
@@ -15,9 +16,9 @@ import { ToDoModule } from './to-do/to-do.module';
     BrowserModule,
     AppRoutingModule,
     TodoModule,
-    ToDoModule
+    TodoModule
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

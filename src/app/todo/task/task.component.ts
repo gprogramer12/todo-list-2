@@ -1,4 +1,5 @@
-import { Component, Input} from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
+import { Tarea } from '../task.interface';
 
 @Component({
   selector: 'app-task',
@@ -7,15 +8,15 @@ import { Component, Input} from '@angular/core';
 })
 export class TaskComponent{
 
-  @Input() cuerpo?: string;
-
-  eliminado: boolean = false;
+  @Input() cuerpo: Tarea = {id: 0, value: ''};
+  @Output() idSender= new EventEmitter<number>();
 
   constructor() { }
 
 
-  eliminar():void{
-      this.eliminado = true;
-  }
+  eliminar(id: number):void{
+      this.idSender.emit(id);
+
+        }
 
 }

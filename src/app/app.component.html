@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12 text-center" >
-    <app-task [cuerpo]="task" *ngFor="let task of tasks"></app-task>
+    <app-list [tasks]="tasks" (id)="deleteTask($event)"></app-list>
     <app-taskcreator (sender)="updateTasks($event)"></app-taskcreator>
   </div>
 </div>

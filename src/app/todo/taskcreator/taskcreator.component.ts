@@ -1,5 +1,6 @@
 
 import { Component, EventEmitter, Output} from '@angular/core';
+import { Tarea } from '../task.interface';
 
 @Component({
   selector: 'app-taskcreator',
@@ -7,12 +8,13 @@ import { Component, EventEmitter, Output} from '@angular/core';
   styleUrls: ['./taskcreator.component.scss']
 })
 export class TaskcreatorComponent{
-  @Output() sender = new EventEmitter<string>();
+  @Output() sender = new EventEmitter<Tarea>();
 
   constructor() {}
 
   addTask(value: HTMLTextAreaElement):void{
-    this.sender.emit(value.value);
+    this.sender.emit({value:value.value,
+                      id: Math.random()});
     value.value = '';
   }
 
