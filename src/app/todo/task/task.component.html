@@ -4,21 +4,27 @@
       <div class="card-body">
         <div class="row">
           <div class="col-8">
-        <p class="card-text">{{cuerpo.value}}</p>
-      </div>
+            <p class="card-text">{{ cuerpo.value }}</p>
+          </div>
 
-      <div class="col-4">
-        <div class="row">
-          <div class="col-6">
-        <a class="btn btn-danger" (click)="eliminar(cuerpo.id)">ELIMINAR</a>
-      </div>
-      <div class="col-6">
-        <input class="form-check-input" type="checkbox" value="" id="completed">
-      </div>
-
-</div>
-</div>
-</div>
+          <div class="col-4">
+            <div class="row">
+              <div class="col-6">
+                <a class="btn btn-danger" (click)="eliminar(cuerpo.id)"
+                  >ELIMINAR</a
+                >
+              </div>
+              <div class="col-6">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="completed"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

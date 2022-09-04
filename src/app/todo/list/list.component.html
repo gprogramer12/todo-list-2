@@ -1,1 +1,5 @@
-<app-task [cuerpo]="task" *ngFor="let task of tasks" (idSender)="sendDelete($event)"></app-task>
+<app-task
+  [cuerpo]="task"
+  *ngFor="let task of tasks; trackBy: taskById"
+  (idSender)="sendDelete($event)"
+></app-task>

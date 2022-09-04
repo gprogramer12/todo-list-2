@@ -1,23 +1,23 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TaskComponent } from './task/task.component';
-import { TaskcreatorComponent } from './taskcreator/taskcreator.component';
+import { NgModule } from '@angular/core';
 import { ListComponent } from './list/list.component';
+import { TaskCreatorComponent } from './task-creator/task-creator.component';
+import { TaskComponent } from './task/task.component';
 
 
 
 @NgModule({
   declarations: [
     TaskComponent,
-    TaskcreatorComponent,
+    TaskCreatorComponent,
     ListComponent
   ],
   imports: [
     CommonModule
   ],
-  exports:[
+  exports: [
     TaskComponent,
-    TaskcreatorComponent,
+    TaskCreatorComponent,
     ListComponent
   ]
 })

@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { Tarea } from './task.interface';
 
+const TASK_KEY = 'tarea';
 @Injectable({
   providedIn: 'root'
 })
 export class TareasService {
 
-  saveTasks(tasks: Tarea[]){
-      localStorage.setItem('tarea', JSON.stringify(tasks));
+  saveTasks(tasks: Tarea[]) {
+    localStorage.setItem(TASK_KEY, JSON.stringify(tasks));
   }
 
-  getTasks():Observable<Tarea[]>{
-      return of(JSON.parse(localStorage.getItem('tarea')!));
-
+  getTasks(): Tarea[] {
+    return localStorage.getItem(TASK_KEY) ? JSON.parse(localStorage.getItem(TASK_KEY) ?? '') : []
   }
 }
