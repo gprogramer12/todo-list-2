@@ -1,4 +1,11 @@
+<div
+cdkDropList
+#todoList="cdkDropList"
+[cdkDropListData]="tasks | async"
+(cdkDropListDropped)="onDrop($event)"
+>
 <app-task
   *ngFor="let task of tasks | async"
-  [cuerpo]="task"
+  [cuerpo]="task" cdkDrag
 ></app-task>
+</div>

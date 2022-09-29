@@ -26,5 +26,9 @@ export class TaskCreatorComponent {
     value.value = "";
   }
 
+  deleteAll(){
+    this.store.dispatch(TodoActions.removeAll())
+  }
+
 
 }

@@ -28,6 +28,7 @@ const todoReducer = createReducer(initialState,
   on(TodoActions.loadTask,(state, {tasks}) => todoAdapter.setAll(tasks,{...state, loaded:true})),
   on(TodoActions.addTasks,(state, {task}) => todoAdapter.addOne(task,{...state, loaded:true})),
   on(TodoActions.removeTasks,(state, {id}) => todoAdapter.removeOne(id, state)),
+  on(TodoActions.removeAll,(state => todoAdapter.removeAll(state)))
   )
 
   export function reducer(state: TodoState | undefined, action: Action){

@@ -12,7 +12,7 @@ export class TodoEffects implements OnInitEffects{
 
   update$ = createEffect(()=>
   this.actions$.pipe(
-    ofType(TodoActions.addTasks, TodoActions.removeTasks),
+    ofType(TodoActions.addTasks, TodoActions.removeTasks, TodoActions.loadTask, TodoActions.removeAll),
     withLatestFrom(this.store.select(fromTodo.getAllTask)),
     tap((inpca)=>
      this.todoService.saveTasks(inpca[1])

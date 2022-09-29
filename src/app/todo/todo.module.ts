@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import * as fromTodo from './+state/todo.reducer'
 import { TodoEffects } from './+state/todo.effects';
 import { EffectsModule } from '@ngrx/effects';
+import {DragDropModule} from '@angular/cdk/drag-drop'
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { EffectsModule } from '@ngrx/effects';
   ],
   imports: [
     CommonModule,
+    DragDropModule,
     StoreModule.forFeature(fromTodo.TODO_FEATURE_KEY, fromTodo.reducer),
     EffectsModule.forFeature([TodoEffects])
   ],
