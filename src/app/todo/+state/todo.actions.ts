@@ -14,17 +14,15 @@ const addTasks = createAction(
 
 const removeTasks = createAction(
   '[Todo Component] Remove Task',
-  props<{ id: string}>()
+  props<{ id: string }>()
 );
 
-const removeAll = createAction(
-  '[Todo Component] Remove All'
-);
+const removeAll = createAction('[Todo Component] Remove All');
 
 export const TodoActions = {
   init,
   loadTask,
   addTasks,
   removeTasks,
-  removeAll
+  removeAll,
 };

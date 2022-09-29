@@ -6,15 +6,8 @@ import { Tarea } from './todo/task.interface';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-
-
-
-
-  constructor(private tareasService: TareasService) { };
-
-
-
+  constructor(private tareasService: TareasService) {}
 }
