@@ -13,7 +13,7 @@ import {
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
 import { Tasc } from '../+state/todo.model';
-import { Observable } from 'rxjs';
+import { map, merge, mergeMap, Observable, take } from 'rxjs';
 import { TodoActions } from '../+state/todo.actions';
 
 @Component({
@@ -25,14 +25,26 @@ import { TodoActions } from '../+state/todo.actions';
 export class ListComponent {
   constructor(private store: Store) {}
 
-  tasks: Observable<Tasc[]> = this.store.select(fromTodo.getAllTask);
+  undoneTasks: Observable<Tasc[]> = this.store.select(fromTodo.getUndoneTasks);
+  doneTasks: Observable<Tasc[]> = this.store.select(fromTodo.getDoneTasks);
 
-  onDrop(event: CdkDragDrop<any>) {
-    moveItemInArray(
-      event.container.data,
-      event.previousIndex,
-      event.currentIndex
-    );
-    this.store.dispatch(TodoActions.loadTask({ tasks: event.container.data }));
+
+   onDrop(event: CdkDragDrop<any>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data,
+        event.previousIndex,
+        event.currentIndex);
+        var  all = this.doneTasks.pipe(mergeMap(task=>this.undoneTasks.pipe(map(task2=>[...task,...task2]))),take(1))
+        all.subscribe(value=>this.store.dispatch(TodoActions.loadTask({tasks:value})))
+
+    }else {
+      transferArrayItem(event.previousContainer.data,
+        event.container.data,
+        event.previousIndex, event.currentIndex);
+
+        this.store.dispatch(TodoActions.updateTask({task:event.container.data[event.currentIndex]}))
+    }
+
+
   }
 }

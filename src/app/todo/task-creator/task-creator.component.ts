@@ -26,6 +26,8 @@ export class TaskCreatorComponent {
         task: {
           id: Math.floor(Math.random() * 2931),
           value: String(value.value),
+          done:false
+
         },
       })
     );

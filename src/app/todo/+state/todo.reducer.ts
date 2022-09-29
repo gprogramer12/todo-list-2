@@ -1,6 +1,7 @@
 import { EntityState } from '@ngrx/entity';
 import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
+import { takeLast } from 'rxjs';
 import { TodoActions } from './todo.actions';
 import { Tasc } from './todo.model';
 
@@ -32,7 +33,10 @@ const todoReducer = createReducer(
   on(TodoActions.removeTasks, (state, { id }) =>
     todoAdapter.removeOne(id, state)
   ),
-  on(TodoActions.removeAll, (state) => todoAdapter.removeAll(state))
+  on(TodoActions.removeAll, (state) => todoAdapter.removeAll(state)
+  ),
+  on(TodoActions.updateTask, (state,{task}) => todoAdapter.updateOne({id:task.id, changes:{...state.entities[task.id], done:!task.done}}, state)
+  ),
 );
 
 export function reducer(state: TodoState | undefined, action: Action) {

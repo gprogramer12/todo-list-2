@@ -10,7 +10,7 @@ const TASK_KEY = 'tarea';
 export class TareasService {
 
   saveTasks(tasks: Tasc[]):void{
-      console.log(tasks)
+
     localStorage.setItem(TASK_KEY, JSON.stringify(tasks));
 
   }

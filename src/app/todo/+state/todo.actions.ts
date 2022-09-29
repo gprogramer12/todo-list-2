@@ -12,6 +12,11 @@ const addTasks = createAction(
   props<{ task: Tasc }>()
 );
 
+const updateTask = createAction(
+  '[Todo Component] Update Task',
+  props<{ task: Tasc }>()
+);
+
 const removeTasks = createAction(
   '[Todo Component] Remove Task',
   props<{ id: string }>()
@@ -25,4 +30,5 @@ export const TodoActions = {
   addTasks,
   removeTasks,
   removeAll,
+  updateTask
 };

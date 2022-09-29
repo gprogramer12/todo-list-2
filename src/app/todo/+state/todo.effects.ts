@@ -15,7 +15,8 @@ export class TodoEffects implements OnInitEffects {
           TodoActions.addTasks,
           TodoActions.removeTasks,
           TodoActions.loadTask,
-          TodoActions.removeAll
+          TodoActions.removeAll,
+          TodoActions.updateTask
         ),
         withLatestFrom(this.store.select(fromTodo.getAllTask)),
         tap((inpca) => this.todoService.saveTasks(inpca[1]))
