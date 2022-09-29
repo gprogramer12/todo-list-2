@@ -3,7 +3,10 @@ import { NgModule } from '@angular/core';
 import { ListComponent } from './list/list.component';
 import { TaskCreatorComponent } from './task-creator/task-creator.component';
 import { TaskComponent } from './task/task.component';
-
+import { StoreModule } from '@ngrx/store';
+import * as fromTodo from './+state/todo.reducer'
+import { TodoEffects } from './+state/todo.effects';
+import { EffectsModule } from '@ngrx/effects';
 
 
 @NgModule({
@@ -13,7 +16,9 @@ import { TaskComponent } from './task/task.component';
     ListComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    StoreModule.forFeature(fromTodo.TODO_FEATURE_KEY, fromTodo.reducer),
+    EffectsModule.forFeature([TodoEffects])
   ],
   exports: [
     TaskComponent,

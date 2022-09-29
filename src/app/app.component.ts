@@ -9,26 +9,12 @@ import { Tarea } from './todo/task.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  _tasks: Tarea[] = this.tareasService.getTasks();
 
-  get tasks() {
-    return this._tasks;
-  }
 
-  set tasks(value: Tarea[]) {
-    this._tasks = value;
-    this.tareasService.saveTasks(this._tasks);
-  }
 
 
   constructor(private tareasService: TareasService) { };
 
-  updateTasks(newTask: Tarea): void {
-    this.tasks = [...this.tasks, newTask]
-  }
 
-  deleteTask(id: number) {
-    this.tasks = this.tasks.filter(value => value.id != id);
-  }
 
 }

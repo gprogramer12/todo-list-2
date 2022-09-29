@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { Tasc } from './+state/todo.model';
 import { Tarea } from './task.interface';
 
 const TASK_KEY = 'tarea';
@@ -7,11 +9,13 @@ const TASK_KEY = 'tarea';
 })
 export class TareasService {
 
-  saveTasks(tasks: Tarea[]) {
+  saveTasks(tasks: Tasc[]):void{
+      console.log(tasks)
     localStorage.setItem(TASK_KEY, JSON.stringify(tasks));
+
   }
 
-  getTasks(): Tarea[] {
-    return localStorage.getItem(TASK_KEY) ? JSON.parse(localStorage.getItem(TASK_KEY) ?? '') : []
+  getTasks(): Observable<Tasc[]> {
+    return localStorage.getItem(TASK_KEY) ? of(JSON.parse(localStorage.getItem(TASK_KEY) ?? '')) : of([])
   }
 }

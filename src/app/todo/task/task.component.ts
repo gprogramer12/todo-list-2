@@ -1,4 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { TodoActions } from '../+state/todo.actions';
+import { Tasc } from '../+state/todo.model';
 import { Tarea } from '../task.interface';
 
 @Component({
@@ -8,11 +11,14 @@ import { Tarea } from '../task.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskComponent {
-  @Input() cuerpo!: Tarea;
-  @Output() idSender = new EventEmitter<number>();
+  @Input() cuerpo!: Tasc;
+
+  constructor(private store: Store){}
+
 
   eliminar(id: number): void {
-    this.idSender.emit(id);
+
+    this.store.dispatch(TodoActions.removeTasks({id: String(id)}))
   }
 
 }

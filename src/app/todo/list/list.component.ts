@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { fromTodo } from '../+state/todo.selector';
 import { Tarea } from '../task.interface';
 
 @Component({
@@ -8,14 +10,9 @@ import { Tarea } from '../task.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListComponent {
-  @Input() tasks!: Tarea[];
-  @Output() id = new EventEmitter<number>();
+  constructor(private store: Store){}
 
-  sendDelete(id: number) {
-    this.id.emit(id);
-  }
 
-  taskById(_index: number, task: Tarea) {
-    return task.id
-  }
+  tasks = this.store.select(fromTodo.getAllTask)
+
 }

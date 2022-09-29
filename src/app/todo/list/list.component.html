@@ -1,5 +1,4 @@
 <app-task
+  *ngFor="let task of tasks | async"
   [cuerpo]="task"
-  *ngFor="let task of tasks; trackBy: taskById"
-  (idSender)="sendDelete($event)"
 ></app-task>
